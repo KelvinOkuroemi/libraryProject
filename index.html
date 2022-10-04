@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <link rel="stylesheet" href="/css/normalize.css"> -->
+    <title>Library</title>
+  </head>
+
+  <body class="justify-center items-center flex flex-col font-sans">
+
+    <!-- Modal Button -->
+    <div class="w-full container flex justify-center items-center my-24">
+        <button
+        type="button"
+        id="open-button"
+        class="bg-gray-700 hover:bg-gray-500 text-white text-2xl w-64 h-32 font-bold py-2 px-4 rounded"
+      >
+        ADD BOOK
+      </button>
+    </div>
+
+    <!-- FORM -->
+    <div id="myModal" class="bg-blue-200 w-screen container max-w-4xl rounded-lg my-8 modal">
+      <div class="py-8 px-2">
+        <div class="flex flex-col justify-center items-center">
+          <p class="text-base uppercase text-lg font-extrabold">
+            Please fill everything
+          </p>
+        </div>
+      </div>
+      <form action="" method="post" class="px-4">
+        <div class="flex flex-col">
+          <label for="title" class="font-bold">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Title"
+            class="rounded rounded-lg px-2 py-2 mb-4"
+            required
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="author" class="font-bold">Author</label>
+          <input
+            type="text"
+            name="author"
+            id="author"
+            placeholder="Author's name"
+            class="rounded rounded-lg px-2 py-2 mb-4"
+            required
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="pages" class="font-bold">Pages</label>
+          <input
+            type="number"
+            name="pages"
+            id="pages"
+            placeholder="Pages"
+            class="rounded rounded-lg px-2 py-2 mb-4"
+            required
+          />
+        </div>
+        <div
+          class="flex justify-center space-x-6 py-2 mx-6 md:mx-64 mb-6 rounded rounded-lg"
+        >
+          <div class="">
+            <button
+              type="button"
+              id="submit-button"
+              class="bg-white hover:bg-green-200 text-green-400 font-bold py-2 px-4 rounded"
+            >
+              SUBMIT
+            </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              id="close-button"
+              class="bg-white hover:bg-red-200 text-red-400 font-bold py-2 px-4 rounded"
+            >
+              CLOSE
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="board px-8 my-8 bg-[#fffbfb] justify-start">
+      <div
+      id="book-card"
+        class="book-card flex flex-col w-full justify-center border py-32 px-16 rounded-lg h-32"
+      >
+        <div class="info-group flex-col flex space-y-2">
+          <p id="title-card" class="w-full">Half of a yellow sun</p>
+          <p id="author-card" class="w-full">Chimamanda Adichie</p>
+          <p id="pages-card" class="w-full">
+            <span id="number">450</span>&nbsp;pages
+          </p>
+        </div>
+        <div
+          class="button-group mt-2 mb-2 flex flex-col justify-center items-center"
+        >
+          <button
+            type="button"
+            id="delete"
+            class="bg-red-400 hover:bg-red-200 text-white font-bold py-2 px-4 rounded"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Javascript -->
+    <script src="js/modal.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
