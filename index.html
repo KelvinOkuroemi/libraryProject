@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css" />
-    <!-- <link rel="stylesheet" href="/css/normalize.css"> -->
     <title>Library</title>
   </head>
 
@@ -90,7 +89,7 @@
         </div>
       </form>
     </div>
-    <div id="board" class="board px-8 my-8 bg-[#fffbfb] justify-start">
+    <div id="board" class="board px-8 my-8 bg-[#fffbfb] justify-start space-y-4 md:space-y-0 ">
       <div
       id="book-card" data-index="0"
         class="book-card flex flex-col w-full justify-center border py-32 px-16 rounded-lg h-32"
@@ -103,7 +102,7 @@
           </p>
         </div>
         <div
-          class="button-group mt-2 mb-2 flex flex-col justify-center items-center"
+          class="button-group mt-2 mb-2 flex space-x-2 justify-center items-center"
         >
           <button
             type="button"
@@ -112,11 +111,19 @@
           >
             Delete
           </button>
+
+          <button
+            type="button"
+            id="status-button"
+            class="bg-yellow-400 hover:bg-yellow-200 text-white font-bold py-2 px-4 rounded"
+          >
+           Status
+          </button>
         </div>
       </div>
     </div>
     <!-- Javascript -->
-    <script src="js/modal.js"></script>
+    <script src="js/modal.js" defer></script>
     <script src="js/app.js" defer></script>
   </body>
 </html>
