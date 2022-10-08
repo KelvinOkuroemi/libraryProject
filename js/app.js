@@ -6,6 +6,8 @@ let authorInput = document.getElementById("author");
 let pageInput = document.getElementById("pages");
 let submitButton = document.getElementById("submit-button");
 let deleteBtn = document.getElementById("delete-button");
+let statusBtn = document.getElementById("status-button")
+let checkboxInput = document.getElementById("checkbox")
 
 
 // @NTS => These form doesn't need a route to point to because we are manipulating the 
@@ -23,14 +25,13 @@ const boardOverlay = document.getElementById("board")
 let library = [];
 
 class Book {
-  constructor(title, author, pages,id) {
+  constructor(title, author, pages, id, checkbox) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.id = id;
     this.checkbox = checkbox;
   }
-
 
 }
 
@@ -39,10 +40,11 @@ function addToLibrary() {
   let title = titleInput.value;
   let author = authorInput.value;
   let pages = pageInput.value;
-  let id = library.length
-  let newBook = new Book(title, author, pages,id)
-  console.log(id);
+  let id = library.length;
+  let checkbox = checkboxInput.checked;
+  let newBook = new Book(title, author, pages, id, checkbox)
   library.push(newBook);
+
 }
 
 // Display library on page
@@ -60,7 +62,7 @@ function renderLibrary() {
         </p>
       </div>
       <div
-        class="button-group mt-2 mb-2 flex flex-col justify-center items-center"
+        class="button-group mt-2 mb-2 flex space-x-2 justify-center items-center"
       >
         <button
           type="button"
@@ -69,7 +71,15 @@ function renderLibrary() {
           class="bg-red-400 hover:bg-red-200 text-white font-bold py-2 px-4 rounded"
         >
           Delete
-        </button>
+        </button>        
+        <button
+            type="button"
+            id="status-button"
+            data-read = ${library[i].checkbox}
+            class = "bg-yellow-400 hover:bg-yellow-200 text-white font-bold py-2 px-4 rounded"
+          >
+           Status
+          </button>
       </div>`;
   boardOverlay.appendChild(newCard);
 }
@@ -100,14 +110,27 @@ boardOverlay.addEventListener("click", (e) => {
   }
 })
 
-// BUGS AND ISSUES
-// Read and unread
-
 function deleteCard(e) {
   let button = e.target;
   button.parentElement.parentElement.remove();
-  library.filter((book)=>{
+  library.filter((book) => {
     console.log(button.dataset.index)
     return button.dataset.index !== book.id;
   })
 }
+
+
+// **READ AND UNREAD FUNCTION
+statusBtn.addEventListener('click', (e)=>{
+  let currentState = e.target.getAttribute('data-read');
+  let currentId = e.target.parentElement.getAttribute('data-id');
+  library.find(book => book.id == currentId);
+  if(currentState == true){
+      statusBtn.textContent = "Not read";
+      statusBtn.dataset.read = false
+
+  }else{
+      statusBtn.textContent = "Read";
+      statusBtn.dataset.read = true
+  }
+})
