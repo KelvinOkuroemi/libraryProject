@@ -75,10 +75,10 @@ function renderLibrary() {
         <button
             type="button"
             id="status-button"
-            data-read = ${library[i].checkbox}
+            data-read=${library[i].checkbox}
             class = "bg-yellow-400 hover:bg-yellow-200 text-white font-bold py-2 px-4 rounded"
           >
-           Status
+          ${library[i].checkbox == true ? "Read" : "Unread"}
           </button>
       </div>`;
   boardOverlay.appendChild(newCard);
@@ -99,17 +99,25 @@ submitButton.addEventListener("click", (e) => {
 })
 
 
-// ***Delete
+// Respond to changes on card
 boardOverlay.addEventListener("click", (e) => {
   const eventButtton = e.target.id;
+  const eventRead = e.target.dataset.read
   if (eventButtton === "delete-button") {
     const doDelete = confirm("You are about to delete this card");
     if (doDelete) {
       deleteCard(e)
     }
   }
+  if (eventRead === "true") {
+    changeStatusFalse(e)
+  }
+  if (eventRead === "false") {
+    changeStatusTrue(e)
+  }
 })
 
+// ***DELETE
 function deleteCard(e) {
   let button = e.target;
   button.parentElement.parentElement.remove();
@@ -121,16 +129,15 @@ function deleteCard(e) {
 
 
 // **READ AND UNREAD FUNCTION
-statusBtn.addEventListener('click', (e)=>{
-  let currentState = e.target.getAttribute('data-read');
-  let currentId = e.target.parentElement.getAttribute('data-id');
-  library.find(book => book.id == currentId);
-  if(currentState == true){
-      statusBtn.textContent = "Not read";
-      statusBtn.dataset.read = false
+function changeStatusFalse(e) {
+  let read = e.target
+  read.textContent = "Unread"
+  read.dataset.read = false
 
-  }else{
-      statusBtn.textContent = "Read";
-      statusBtn.dataset.read = true
-  }
-})
+}
+
+function changeStatusTrue(e){
+    let read = e.target
+    read.textContent = "Read"
+    read.dataset.read = true
+}
